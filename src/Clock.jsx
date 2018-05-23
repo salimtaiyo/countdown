@@ -7,13 +7,25 @@ class Clock extends Component {
 
         this.state = {
             days: 0,
-            hours:0,
-            minute:0,
-            sec: 0
+            hrs:0,
+            min:0,
+            sec: 0,
+            days:0
         }
     }
 
+    getTime(deadline){
+        const time = Date.parse(deadline)- Date.parse(new Date());
+        const sec = Math.floor((time/1000)%60);
+        const min = Math.floor((time/1000/60) % 60);
+        const hrs = Math.floor(time/(1000*60*60) % 24);
+        const days = Math.floor(time/(1000*60*60*24));
+        
+        console.log(`days: ${days} hours ${hrs} mins ${min} sec ${sec}`);
+    }
+
     render(){
+            this.getTime(this.props.deadline);
         return(
             <div>
                 {this.props.deadline}
